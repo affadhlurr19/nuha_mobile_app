@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/ui/splash_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,14 +31,10 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),        
         // initialRoute: HomePage.routeName,
-        // routes: {
-        //   HomePage.routeName: (context) => const HomePage(),
-        //   DetailPage.routeName: (context) => DetailPage(
-        //         idRestaurant:
-        //             ModalRoute.of(context)?.settings.arguments as String,
-        //       ),
-        //   SearchPage.routeName: (context) => const SearchPage(),
-        // },
+        routes: {
+          '/': (context) => SplashPage(),
+          '/hello': (context) => HelloPage(),
+        },        
     );
   }
 }
