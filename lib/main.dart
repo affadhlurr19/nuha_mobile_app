@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
 import 'package:nuha_mobile_app/ui/splash_page.dart';
@@ -32,12 +33,13 @@ class MyApp extends StatelessWidget {
           )),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),        
-        // initialRoute: HomePage.routeName,
+        initialRoute: BottomNav.routeName,
         routes: {
           '/': (context) => SplashPage(),
           '/hello': (context) => HelloPage(),
           RegisterPage.routeName:(context) => RegisterPage(),
-          LoginPage.routeName:(context) => LoginPage()
+          LoginPage.routeName:(context) => LoginPage(),
+          BottomNav.routeName:(context) => BottomNav()
         },        
     );
   }
