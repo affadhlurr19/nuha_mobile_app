@@ -49,17 +49,22 @@ class _BottomNavState extends State<BottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
-      bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: primaryColor,
-          selectedItemColor: secondaryColor,
-          currentIndex: _bottomNavIndex,
-          items: _bottomNavBarItems,
-          onTap: _onBottomNavTapped,
+      bottomNavigationBar: SizedBox(
+        height: 75,
+        child: ClipRRect(
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: titleColor,
+            selectedItemColor: iconColor,
+            unselectedItemColor: const Color(0XFFFFFFFF),
+            currentIndex: _bottomNavIndex,
+            items: _bottomNavBarItems,
+            onTap: _onBottomNavTapped,
+            
+          ),
         ),
       ),
       extendBody: true,
