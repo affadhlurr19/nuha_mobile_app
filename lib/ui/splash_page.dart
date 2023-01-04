@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 
 class SplashPage extends StatefulWidget {
+  static const String routeName = '/';
+
   const SplashPage({Key? key}) : super(key: key);
 
   @override

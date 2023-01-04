@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:flutter/gestures.dart';
 
 class RegisterPage extends StatelessWidget {
   static const String routeName = '/register';
@@ -16,9 +17,14 @@ class RegisterPage extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.fromLTRB(30, 50, 30, 0),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  size: 35,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 35,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ),
               const SizedBox(height: 26),
@@ -181,9 +187,13 @@ class RegisterPage extends StatelessWidget {
                 text: TextSpan(
                   text: 'Already have an account? ',
                   style: Theme.of(context).textTheme.bodySmall,
-                  children: const <TextSpan>[
+                  children: <TextSpan>[
                     TextSpan(
                         text: 'Log In',
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, '/login');
+                          },
                         style: TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
@@ -198,7 +208,9 @@ class RegisterPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/login');
+                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

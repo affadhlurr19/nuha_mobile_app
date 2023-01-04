@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 
 class HelloPage extends StatelessWidget {
+  static const String routeName = '/hello';
+
   const HelloPage({super.key});
 
   @override
@@ -38,7 +40,7 @@ class HelloPage extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/sign-in');
+                      Navigator.pushNamed(context, '/login');
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +72,7 @@ class HelloPage extends StatelessWidget {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/sign-up');
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

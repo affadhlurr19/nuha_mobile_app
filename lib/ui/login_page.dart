@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:flutter/gestures.dart';
 
 class LoginPage extends StatelessWidget {
   static const String routeName = '/login';
@@ -16,9 +17,14 @@ class LoginPage extends StatelessWidget {
               Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.fromLTRB(30, 50, 30, 0),
-                child: const Icon(
-                  Icons.arrow_back_ios,
-                  size: 35,
+                child: IconButton(
+                  icon: const Icon(
+                    Icons.arrow_back_ios,
+                    size: 35,
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                 ),
               ),
               const SizedBox(height: 26),
@@ -42,7 +48,7 @@ class LoginPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
-              const SizedBox(height: 69),              
+              const SizedBox(height: 69),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 7),
@@ -113,17 +119,25 @@ class LoginPage extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 alignment: Alignment.centerRight,
-                child: Text('Forgot Password?', style: Theme.of(context).textTheme.bodySmall!.copyWith(fontWeight: FontWeight.bold)),
-              )              ,
+                child: Text('Forgot Password?',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(fontWeight: FontWeight.bold)),
+              ),
               const SizedBox(height: 160),
               RichText(
                 text: TextSpan(
                   text: "Don't have an account? ",
                   style: Theme.of(context).textTheme.bodySmall,
-                  children: const <TextSpan>[
+                  children: <TextSpan>[
                     TextSpan(
                         text: 'Register',
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        recognizer: TapGestureRecognizer()
+                          ..onTap = () {
+                            Navigator.pushNamed(context, '/register');
+                          },
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -137,7 +151,9 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/home');
+                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
