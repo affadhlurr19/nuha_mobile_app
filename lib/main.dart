@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
 import 'package:nuha_mobile_app/ui/splash_page.dart';
@@ -16,29 +17,30 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nuha Mobile App',
-      theme: ThemeData(
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: primaryColor,
-              onPrimary: Colors.white,
-              secondary: secondaryColor,
-            ),
-        textTheme: myTextTheme,
-        elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-          primary: secondaryColor,
-          onPrimary: Colors.black,
-          textStyle: const TextStyle(),
-        )),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      // initialRoute: HomePage.routeName,
-      routes: {
-        SplashPage.routeName: (context) => SplashPage(),
-        HelloPage.routeName: (context) => HelloPage(),
-        RegisterPage.routeName: (context) => RegisterPage(),
-        LoginPage.routeName: (context) => LoginPage()
-      },
+        title: 'Nuha Mobile App',
+        theme: ThemeData(
+          colorScheme: Theme.of(context).colorScheme.copyWith(
+                primary: primaryColor,
+                onPrimary: Colors.white,
+                secondary: secondaryColor,
+              ),
+          textTheme: myTextTheme,
+          elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+            primary: secondaryColor,
+            onPrimary: Colors.black,
+            textStyle: const TextStyle(),
+          )),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),        
+        initialRoute: BottomNav.routeName,
+        routes: {
+          SplashPage.routeName: (context) => SplashPage(),
+          HelloPage.routeName: (context) => HelloPage(),
+          RegisterPage.routeName:(context) => RegisterPage(),
+          LoginPage.routeName:(context) => LoginPage(),
+          BottomNav.routeName:(context) => BottomNav()
+        },        
     );
   }
 }
