@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/ui/article_detail_page.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/ui/search_article_page.dart';
 import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
@@ -39,7 +41,9 @@ class MyApp extends StatelessWidget {
           HelloPage.routeName: (context) => HelloPage(),
           RegisterPage.routeName:(context) => RegisterPage(),
           LoginPage.routeName:(context) => LoginPage(),
-          BottomNav.routeName:(context) => BottomNav()
+          BottomNav.routeName:(context) => BottomNav(),
+          ArticleDetailPage.routeName:(context) => ArticleDetailPage(),
+          SearchArticlePage.routeName:(context) => SearchArticlePage()
         },        
     );
   }
