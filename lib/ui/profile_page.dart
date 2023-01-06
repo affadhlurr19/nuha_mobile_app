@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/widget/menu_profile_widget.dart';
 
@@ -10,27 +11,36 @@ class ProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backColor,
+      appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: backColor,
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.dark),
+          toolbarHeight: 80,
+          backgroundColor: backColor,
+          
+          title: Text(
+            'Profile',
+            style: Theme.of(context)
+                .textTheme
+                .headline4!
+                .copyWith(color: titleColor),
+          ),
+          elevation: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.fromLTRB(30, 30, 30, 0),
+            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Profile",
-                  style: Theme.of(context)
-                      .textTheme
-                      .headline4!
-                      .copyWith(color: titleColor),
-                ),
+              children: [              
                 Stack(
                   children: [
                     Container(
                       margin: const EdgeInsets.only(top: 40),
                       padding: const EdgeInsets.only(top: 50),
-                      width: 330,
-                      height: 135,
+                      width: double.infinity,
+                      height: 140,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: secondaryColor,
@@ -60,10 +70,14 @@ class ProfilePage extends StatelessWidget {
                             height: 7,
                           ),
                           SizedBox(
-                            width: 58,
-                            height: 22,
+                            width: 65,
+                            height: 25,
                             child: ElevatedButton(
                               onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(5)),
+                                  backgroundColor: iconColor),
                               child: Text(
                                 'Free',
                                 style: Theme.of(context)
@@ -73,10 +87,6 @@ class ProfilePage extends StatelessWidget {
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold),
                               ),
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(5)),
-                                  backgroundColor: iconColor),
                             ),
                           )
                         ],
@@ -113,7 +123,7 @@ class ProfilePage extends StatelessWidget {
                 ),
                 Center(
                   child: Container(
-                      margin: const EdgeInsets.only(top: 30),
+                      margin: const EdgeInsets.only(top: 28, bottom: 20),
                       width: 200,
                       height: 50,
                       child: ElevatedButton(

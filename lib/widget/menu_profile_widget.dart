@@ -11,8 +11,8 @@ class MenuProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 5),
-      width: 330,
-      height: 30,
+      width: double.infinity,
+      height: 50,
       padding: const EdgeInsets.only(left: 18),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
