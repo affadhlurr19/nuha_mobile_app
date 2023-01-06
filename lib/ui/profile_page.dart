@@ -16,24 +16,23 @@ class ProfilePage extends StatelessWidget {
               statusBarColor: backColor,
               statusBarBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.dark),
-          toolbarHeight: 80,
+          toolbarHeight: 0,
           backgroundColor: backColor,
-          
-          title: Text(
-            'Profile',
-            style: Theme.of(context)
-                .textTheme
-                .headline4!
-                .copyWith(color: titleColor),
-          ),
           elevation: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Container(
-            margin: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+            margin: const EdgeInsets.fromLTRB(10, 15, 10, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [              
+              children: [
+                Text(
+                  'Profile',
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline4!
+                      .copyWith(color: titleColor),
+                ),
                 Stack(
                   children: [
                     Container(
@@ -130,6 +129,10 @@ class ProfilePage extends StatelessWidget {
                         onPressed: () {
                           Navigator.pushNamed(context, '/hello');
                         },
+                        style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(30)),
+                            backgroundColor: iconColor),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -150,10 +153,6 @@ class ProfilePage extends StatelessWidget {
                             )
                           ],
                         ),
-                        style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(30)),
-                            backgroundColor: iconColor),
                       )),
                 )
               ],

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
-import 'package:nuha_mobile_app/widget/bottom_nav.dart';
+import 'package:nuha_mobile_app/ui/home_page.dart';
 import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/profile_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
 import 'package:nuha_mobile_app/ui/splash_page.dart';
+import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           )),
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),        
-        initialRoute: BottomNav.routeName,
+        // initialRoute: BottomNav.routeName,
         routes: {
           SplashPage.routeName: (context) => SplashPage(),
           HelloPage.routeName: (context) => HelloPage(),
