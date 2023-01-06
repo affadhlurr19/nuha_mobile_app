@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/ui/home_page.dart';
 import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/profile_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
         RegisterPage.routeName: (context) => RegisterPage(),
         LoginPage.routeName: (context) => LoginPage(),
         ProfilePage.routeName: (context) => ProfilePage(),
+        HomePage.routeName: (context) => HomePage(),
       },
     );
   }
