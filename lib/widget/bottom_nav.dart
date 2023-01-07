@@ -20,7 +20,7 @@ class _BottomNavState extends State<BottomNav> {
 
   final List<Widget> _listWidget = [
     const HomePage(),
-    const ArticlePage(),
+    const ArticleListPage(),
     const ProfilePage(),
   ];
 
@@ -31,7 +31,7 @@ class _BottomNavState extends State<BottomNav> {
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.menu_book),
-      label: ArticlePage.articleTitle,
+      label: ArticleListPage.articleTitle,
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.person),
