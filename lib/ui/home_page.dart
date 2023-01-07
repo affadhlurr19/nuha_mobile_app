@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
                 const SizedBox(
                   height: 17,
                 ),
-                // const CarouselHome(),
+                const CarouselHome(),
                 const SizedBox(
                   height: 19,
                 ),
@@ -196,65 +196,62 @@ class HomePage extends StatelessWidget {
                           offset: const Offset(1, 0),
                         )
                       ]),
-                  child: Expanded(
-                    child: Column(
-                      children: [
-                        Expanded(
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 186,
-                                height: 120,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      "Konsultasikan Keuangan Anda!",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyText2!
-                                          .copyWith(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    Text(
-                                      "Lakukan konsultasi melalui video call atau chat dengan mudah dan gratis untuk konsultasi pertama Anda bersama konsultan terpercaya kami.",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .caption!
-                                          .copyWith(
-                                              color: Colors.black,
-                                              fontSize: 10),
-                                    ),
-                                  ],
-                                ),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 186,
+                              height: 120,
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "Konsultasikan Keuangan Anda!",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyText2!
+                                        .copyWith(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                  ),
+                                  Text(
+                                    "Lakukan konsultasi melalui video call atau chat dengan mudah dan gratis untuk konsultasi pertama Anda bersama konsultan terpercaya kami.",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption!
+                                        .copyWith(
+                                            color: Colors.black, fontSize: 10),
+                                  ),
+                                ],
                               ),
-                              // const Image(
-                              //   image: AssetImage("images/7000961.jpg"),
-                              //   width: 100,
-                              // )
-                            ],
+                            ),
+                            const Image(
+                              image: AssetImage("assets/images/7000961.jpg"),
+                              width: 100,
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 280,
+                        height: 35,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: iconColor,
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Konsultasi Sekarang",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyText2!
+                                .copyWith(color: Colors.black),
                           ),
                         ),
-                        Container(
-                          width: 280,
-                          height: 35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: iconColor,
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Konsultasi Sekarang",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyText2!
-                                  .copyWith(color: Colors.black),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ),
                 const SizedBox(

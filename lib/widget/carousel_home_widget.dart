@@ -12,11 +12,11 @@ class _CarouselHomeState extends State<CarouselHome> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
   final List<String> imgList = [
-    'images/carousel_1.png',
-    'images/carousel_2.png',
-    'images/carousel_3.png',
-    'images/carousel_4.png',
-    'images/carousel_5.png'
+    'assets/images/carousel_1.png',
+    'assets/images/carousel_2.png',
+    'assets/images/carousel_3.png',
+    'assets/images/carousel_4.png',
+    'assets/images/carousel_5.png'
   ];
 
   @override
