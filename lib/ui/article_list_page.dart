@@ -14,11 +14,11 @@ class ArticleListPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           systemOverlayStyle: const SystemUiOverlayStyle(
-              statusBarColor: Color(0XFFF7F8F9),
+              statusBarColor: backColor,
               statusBarBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.dark),
           toolbarHeight: 80,
-          backgroundColor: const Color(0XFFF7F8F9),
+          backgroundColor: backColor,
           actions: [
             Container(
                 padding: const EdgeInsets.only(right: 15),
@@ -45,7 +45,7 @@ class ArticleListPage extends StatelessWidget {
                 .copyWith(color: titleColor),
           ),
           elevation: 0),
-      backgroundColor: const Color(0XFFF7F8F9),
+      backgroundColor: backColor,
       body: SingleChildScrollView(
         child: Column(
           children: [
