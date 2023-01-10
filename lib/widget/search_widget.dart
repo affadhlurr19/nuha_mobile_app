@@ -1,12 +1,13 @@
-import 'package:flutter/material.dart';
-import 'package:nuha_mobile_app/data/model/article.dart';
-import 'package:nuha_mobile_app/ui/article_detail_page.dart';
 import 'package:badges/badges.dart';
+import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/data/model/search_article.dart';
+import 'package:nuha_mobile_app/ui/article_detail_page.dart';
 
-class CardArticle extends StatelessWidget {
-  final Article article;
-  const CardArticle({Key? key, required this.article}) : super(key: key);
+class SearchWidget extends StatelessWidget {
+  final Articles searchResult;
+
+  const SearchWidget({super.key, required this.searchResult});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,8 @@ class CardArticle extends StatelessWidget {
       child: Card(
         elevation: 5,
         child: InkWell(
-          onTap: () => Navigator.pushNamed(context, ArticleDetailPage.routeName, arguments: article.id),
+          onTap: () => Navigator.pushNamed(context, ArticleDetailPage.routeName,
+              arguments: searchResult.id),
           child: SizedBox(
             height: 130,
             child: Row(children: <Widget>[
@@ -30,7 +32,7 @@ class CardArticle extends StatelessWidget {
                     ),
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(article.imageUrl!),
+                      image: NetworkImage(searchResult.imageUrl!),
                     )),
               ),
               Flexible(
@@ -42,7 +44,7 @@ class CardArticle extends StatelessWidget {
                         margin: const EdgeInsets.only(top: 5),
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
-                          article.title!,
+                          searchResult.title!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
@@ -63,7 +65,7 @@ class CardArticle extends StatelessWidget {
                           badgeColor: iconColor,
                           borderRadius: BorderRadius.circular(8),
                           badgeContent: Text(
-                            article.category!,
+                            searchResult.category!,
                             style: Theme.of(context).textTheme.button!.copyWith(
                                 fontSize: 8, fontWeight: FontWeight.bold),
                           ),
@@ -74,7 +76,7 @@ class CardArticle extends StatelessWidget {
                         margin: const EdgeInsets.only(bottom: 5),
                         padding: const EdgeInsets.symmetric(horizontal: 10),
                         child: Text(
-                          article.content!,
+                          searchResult.content!,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)

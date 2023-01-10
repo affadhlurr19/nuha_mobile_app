@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/ui/favorite_list_page.dart';
 import 'package:nuha_mobile_app/widget/menu_profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -115,8 +116,48 @@ class _ProfilePageState extends State<ProfilePage> {
                   height: 28,
                 ),
                 Column(
-                  children: const [
-                    MenuProfile(name: "Favorite Artikel", ikon: Icons.favorite),
+                  children: [
+                    Container(
+                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      width: double.infinity,
+                      height: 55,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.2),
+                              blurRadius: 2,
+                              offset: const Offset(1, 0),
+                            )
+                          ]),
+                      child: InkWell(
+                        onTap: () => Navigator.pushNamed(context, FavoriteList.routeName),
+                        child: Row(
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            color: titleColor,
+                            size: 20.0,
+                          ),
+                          SizedBox(width: 7),
+                          Container(
+                            width: 100,
+                            child: Text(
+                              'Favorite Artikel',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyText2!
+                                  .copyWith(color: Colors.black, fontWeight: FontWeight.bold),
+                              maxLines: 2,
+                            ),
+                          ),
+                          
+                        ],
+                      ),
+                      ),
+                    ),
+                    SizedBox(height: 5),                   
                     MenuProfile(name: "Upgrade Akun", ikon: Icons.diamond),
                     MenuProfile(
                         name: "Kode Referral", ikon: Icons.wallet_giftcard),
@@ -140,7 +181,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         onPressed: () async {
                           final navigator = Navigator.of(context);
                           await _auth.signOut();
-
                           navigator.pop();
                         },
                         style: ElevatedButton.styleFrom(

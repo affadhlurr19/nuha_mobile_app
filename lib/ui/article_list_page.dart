@@ -56,8 +56,8 @@ class ArticleListPage extends StatelessWidget {
               statusBarBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.dark),
           toolbarHeight: 80,
-          automaticallyImplyLeading: false,
           backgroundColor: backColor,
+          automaticallyImplyLeading: false,
           actions: [
             Container(
                 padding: const EdgeInsets.only(right: 15),
@@ -86,6 +86,7 @@ class ArticleListPage extends StatelessWidget {
           elevation: 0),
       backgroundColor: backColor,
       body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
         child: Column(
           children: [const SizedBox(height: 15), _buildList()],
         ),
