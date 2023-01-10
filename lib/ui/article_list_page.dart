@@ -56,6 +56,7 @@ class ArticleListPage extends StatelessWidget {
               statusBarBrightness: Brightness.light,
               statusBarIconBrightness: Brightness.dark),
           toolbarHeight: 80,
+          automaticallyImplyLeading: false,
           backgroundColor: backColor,
           actions: [
             Container(
