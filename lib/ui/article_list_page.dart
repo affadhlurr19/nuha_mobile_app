@@ -14,7 +14,7 @@ class ArticleListPage extends StatelessWidget {
     return Consumer<ArticleProvider>(builder: (context, state, _) {
       if (state.state == ResultState.loading) {
         return const Center(
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(color: titleColor),
         );
       } else if (state.state == ResultState.hasData) {
         return ListView.builder(
