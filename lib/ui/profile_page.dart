@@ -1,11 +1,36 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/ui/hello_page.dart';
+import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/widget/menu_profile_widget.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   static const String profileTitle = 'Profile';
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  final _auth = FirebaseAuth.instance;
+  late User? _activeUser;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() async {
+    try {
+      _activeUser = _auth.currentUser;
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +84,7 @@ class ProfilePage extends StatelessWidget {
                             height: 7,
                           ),
                           Text(
-                            "jamessupratno@gmail.com",
+                            _activeUser!.email.toString(),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyText2!
@@ -126,8 +151,11 @@ class ProfilePage extends StatelessWidget {
                       width: 200,
                       height: 50,
                       child: ElevatedButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, '/hello');
+                        onPressed: () async {
+                          final navigator = Navigator.of(context);
+                          await _auth.signOut();
+
+                          navigator.pop();
                         },
                         style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(

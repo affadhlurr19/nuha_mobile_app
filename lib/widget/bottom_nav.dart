@@ -50,7 +50,7 @@ class _BottomNavState extends State<BottomNav> {
     return Scaffold(
       body: _listWidget[_bottomNavIndex],
       bottomNavigationBar: SizedBox(
-        height: 75,
+        height: 70,
         child: ClipRRect(
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(30),

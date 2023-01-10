@@ -1,15 +1,42 @@
+import 'dart:math';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:flutter/gestures.dart';
+import 'package:nuha_mobile_app/ui/login_page.dart';
 
-class RegisterPage extends StatelessWidget {
+class RegisterPage extends StatefulWidget {
   static const String routeName = '/register';
 
   const RegisterPage({super.key});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
+
+  bool _obscureText = true;
+  bool _obscureTextConfirm = true;
+  bool _isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.dark),
+          toolbarHeight: 0,
+          backgroundColor: Colors.white,
+          elevation: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -48,38 +75,7 @@ class RegisterPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
               ),
-              const SizedBox(height: 47),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 30, right: 30, bottom: 7),
-                child: Text(
-                  'Full Name',
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium!
-                      .copyWith(fontWeight: FontWeight.bold),
-                ),
-              ),
-              Container(
-                alignment: Alignment.centerLeft,
-                padding: const EdgeInsets.only(left: 30, right: 30),
-                child: TextField(
-                  keyboardType: TextInputType.name,
-                  decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: const BorderSide(
-                              color: secondaryColor, width: 1)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: const BorderSide(
-                              color: secondaryColor, width: 1.5)),
-                      isDense: true,
-                      hintText: 'Your Full Name'),
-                  style: Theme.of(context).textTheme.bodyText2,
-                ),
-              ),
-              const SizedBox(height: 14),
+              const SizedBox(height: 57),
               Container(
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30, bottom: 7),
@@ -95,6 +91,8 @@ class RegisterPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: TextField(
+                  cursorColor: Colors.black,
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -126,12 +124,23 @@ class RegisterPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: TextField(
-                  obscureText: true,
+                  cursorColor: Colors.black,
+                  controller: _passwordController,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
-                      suffixIcon: const Icon(
-                        Icons.remove_red_eye,
-                        color: secondaryColor,
-                        size: 24,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: secondaryColor,
+                          size: 24,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -162,12 +171,23 @@ class RegisterPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: TextField(
-                  obscureText: true,
+                  cursorColor: Colors.black,
+                  controller: _confirmPasswordController,
+                  obscureText: _obscureTextConfirm,
                   decoration: InputDecoration(
-                      suffixIcon: const Icon(
-                        Icons.remove_red_eye,
-                        color: secondaryColor,
-                        size: 24,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureTextConfirm
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: secondaryColor,
+                          size: 24,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureTextConfirm = !_obscureTextConfirm;
+                          });
+                        },
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -182,7 +202,7 @@ class RegisterPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
-              const SizedBox(height: 58),
+              const SizedBox(height: 108),
               RichText(
                 text: TextSpan(
                   text: 'Already have an account? ',
@@ -194,7 +214,7 @@ class RegisterPage extends StatelessWidget {
                           ..onTap = () {
                             Navigator.pushNamed(context, '/login');
                           },
-                        style: TextStyle(fontWeight: FontWeight.bold)),
+                        style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -207,10 +227,8 @@ class RegisterPage extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
+                      backgroundColor: iconColor,
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/login');
-                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -219,20 +237,77 @@ class RegisterPage extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .button!
-                              .copyWith(color: primaryColor),
+                              .copyWith(color: Colors.black),
                         ),
                         const SizedBox(width: 2),
                         const Icon(
                           Icons.arrow_forward_outlined,
-                          color: primaryColor,
+                          color: Colors.black,
                         )
                       ],
-                    )),
+                    ),
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      try {
+                        final navigator = Navigator.of(context);
+                        final email = _emailController.text;
+                        final password = _passwordController.text;
+                        final confirmPassword = _confirmPasswordController.text;
+
+                        if (password != confirmPassword) {
+                          const snackbar = SnackBar(
+                              content:
+                                  Text('Password Confirmation Do Not Match'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else {
+                          UserCredential userCredential = await FirebaseAuth
+                              .instance
+                              .createUserWithEmailAndPassword(
+                                  email: email, password: password);
+
+                          navigator.pushReplacementNamed(LoginPage.routeName);
+                          const snackbar = SnackBar(
+                              content: Text(
+                                  'Your Account is Created'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                          
+                        }
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'weak-password') {
+                          const snackbar = SnackBar(
+                              content: Text(
+                                  'The Password is too weak. Min 6 Character'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else if (e.code == 'email-already-in-use') {
+                          const snackbar = SnackBar(
+                              content: Text(
+                                  'The account already exists for that email.'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        }
+                      } catch (e) {
+                        final snackbar = SnackBar(content: Text(e.toString()));
+                        ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                      } finally {
+                        setState(() {
+                          _isLoading = false;
+                        });
+                      }
+                    }),
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
   }
 }
