@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
+import 'package:nuha_mobile_app/ui/hello_page.dart';
 import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 
 class SplashPage extends StatefulWidget {
@@ -16,7 +18,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     Timer(const Duration(seconds: 3), () {
-      Navigator.pushNamedAndRemoveUntil(context, BottomNav.routeName, (route) => false);
+      Navigator.pushNamedAndRemoveUntil(context, HelloPage.routeName, (route) => false);
     });
   }
 
@@ -24,6 +26,14 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: titleColor,
+      appBar: AppBar(
+            systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: titleColor,
+                statusBarBrightness: Brightness.dark,
+                statusBarIconBrightness: Brightness.light),
+            toolbarHeight: 0,
+            backgroundColor: Colors.white,
+            elevation: 0),
       body: Center(
         child: Text(
           'Nuha',

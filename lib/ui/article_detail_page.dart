@@ -10,7 +10,7 @@ class ArticleDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF7F8F9),
+      backgroundColor: backColor,
       body: CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
@@ -28,7 +28,7 @@ class ArticleDetailPage extends StatelessWidget {
                     shape: CircleBorder(),
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back),
                     iconSize: 25,
                     color: Colors.white,
                     onPressed: () {

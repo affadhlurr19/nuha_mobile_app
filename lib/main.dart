@@ -7,8 +7,14 @@ import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/ui/register_page.dart';
 import 'package:nuha_mobile_app/ui/splash_page.dart';
 import 'package:nuha_mobile_app/widget/bottom_nav.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -24,7 +30,7 @@ class MyApp extends StatelessWidget {
           colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: primaryColor,
                 onPrimary: Colors.white,
-                secondary: secondaryColor,
+                secondary: secondaryColor,  
               ),
           textTheme: myTextTheme,
           elevatedButtonTheme: ElevatedButtonThemeData(

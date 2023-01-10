@@ -1,15 +1,39 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:flutter/gestures.dart';
+import 'package:nuha_mobile_app/ui/home_page.dart';
+import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   static const String routeName = '/login';
 
   const LoginPage({super.key});
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  bool _obscureText = true;
+  bool _isLoading = false;
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+          systemOverlayStyle: const SystemUiOverlayStyle(
+              statusBarColor: Colors.white,
+              statusBarBrightness: Brightness.light,
+              statusBarIconBrightness: Brightness.dark),
+          toolbarHeight: 0,
+          backgroundColor: Colors.white,
+          elevation: 0),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -64,7 +88,10 @@ class LoginPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: TextField(
+                  cursorColor: Colors.black,
+                  controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
+                  keyboardAppearance: Brightness.dark,
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -95,12 +122,23 @@ class LoginPage extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 padding: const EdgeInsets.only(left: 30, right: 30),
                 child: TextField(
-                  obscureText: true,
+                  cursorColor: Colors.black,
+                  controller: _passwordController,
+                  obscureText: _obscureText,
                   decoration: InputDecoration(
-                      suffixIcon: const Icon(
-                        Icons.remove_red_eye,
-                        color: secondaryColor,
-                        size: 24,
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: secondaryColor,
+                          size: 24,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
                       ),
                       enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(5),
@@ -115,17 +153,7 @@ class LoginPage extends StatelessWidget {
                   style: Theme.of(context).textTheme.bodyText2,
                 ),
               ),
-              const SizedBox(height: 5),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                alignment: Alignment.centerRight,
-                child: Text('Forgot Password?',
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontWeight: FontWeight.bold)),
-              ),
-              const SizedBox(height: 160),
+              const SizedBox(height: 170),
               RichText(
                 text: TextSpan(
                   text: "Don't have an account? ",
@@ -151,9 +179,6 @@ class LoginPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(30),
                       ),
                     ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/home');
-                    },
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -170,12 +195,50 @@ class LoginPage extends StatelessWidget {
                           color: primaryColor,
                         )
                       ],
-                    )),
+                    ),
+                    onPressed: () async {
+                      setState(() {
+                        _isLoading = true;
+                      });
+                      try {
+                        final navigator = Navigator.of(context);
+                        final email = _emailController.text;
+                        final password = _passwordController.text;
+
+                        UserCredential userCredential = await FirebaseAuth
+                            .instance
+                            .signInWithEmailAndPassword(
+                                email: email, password: password);
+
+                        navigator.pushReplacementNamed(BottomNav.routeName);
+                      } on FirebaseAuthException catch (e) {
+                        if (e.code == 'user-not-found') {
+                          const snackbar =
+                              SnackBar(content: Text('User Not Found'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        } else if (e.code == 'wrong-password') {
+                          const snackbar =
+                              SnackBar(content: Text('Wrong Password'));
+                          ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                        }
+                      } finally {
+                        setState(() {
+                          _isLoading = false;
+                        });
+                      }
+                    }),
               )
             ],
           ),
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
   }
 }

@@ -29,6 +29,13 @@
             {
               "client_id": "352975351124-a4um99fb62hoqqun2c01fska6h2fah66.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "352975351124-h0aaf4n27n67j7jtt9832ars00bu162b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.nuhaMobileApp"
+              }
             }
           ]
         }
