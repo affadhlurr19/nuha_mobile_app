@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '352975351124',
     projectId: 'nuha-mobile-app',
     storageBucket: 'nuha-mobile-app.appspot.com',
-    iosClientId: '352975351124-h0aaf4n27n67j7jtt9832ars00bu162b.apps.googleusercontent.com',
+    iosClientId:
+        '352975351124-h0aaf4n27n67j7jtt9832ars00bu162b.apps.googleusercontent.com',
     iosBundleId: 'com.example.nuhaMobileApp',
   );
 }

@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/widget/carousel_home_widget.dart';
 import 'package:nuha_mobile_app/widget/menu_home_widget.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HomePage extends StatelessWidget {
   static const String routeName = '/home';
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Container(
-            margin: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+            margin: const EdgeInsets.fromLTRB(10, 15, 10, 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -138,9 +139,9 @@ class HomePage extends StatelessWidget {
                         children: [
                           Column(
                             children: [
-                              const Icon(
-                                Icons.money,
-                                size: 40,
+                              const FaIcon(
+                                FontAwesomeIcons.solidPlusSquare,
+                                size: 37,
                                 color: titleColor,
                               ),
                               Text(
@@ -157,9 +158,9 @@ class HomePage extends StatelessWidget {
                           ),
                           Column(
                             children: [
-                              const Icon(
-                                Icons.money,
-                                size: 40,
+                              const FaIcon(
+                                FontAwesomeIcons.solidMinusSquare,
+                                size: 37,
                                 color: titleColor,
                               ),
                               Text(

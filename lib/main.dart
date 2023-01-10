@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: Theme.of(context).colorScheme.copyWith(
                 primary: primaryColor,
                 onPrimary: Colors.white,
-                secondary: secondaryColor,  
+                secondary: secondaryColor,
               ),
           textTheme: myTextTheme,
           elevatedButtonTheme: ElevatedButtonThemeData(

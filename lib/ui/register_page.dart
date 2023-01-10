@@ -269,10 +269,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
                           navigator.pushReplacementNamed(LoginPage.routeName);
                           const snackbar = SnackBar(
-                              content: Text(
-                                  'Your Account is Created'));
+                              content: Text('Your Account is Created'));
                           ScaffoldMessenger.of(context).showSnackBar(snackbar);
-                          
                         }
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'weak-password') {

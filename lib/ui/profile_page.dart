@@ -2,8 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
-import 'package:nuha_mobile_app/ui/hello_page.dart';
-import 'package:nuha_mobile_app/ui/login_page.dart';
 import 'package:nuha_mobile_app/widget/menu_profile_widget.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -72,18 +70,6 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: Column(
                         children: [
                           Text(
-                            "James Supratno",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyText1!
-                                .copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 7,
-                          ),
-                          Text(
                             _activeUser!.email.toString(),
                             style: Theme.of(context)
                                 .textTheme
@@ -91,7 +77,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 .copyWith(color: Colors.white),
                           ),
                           const SizedBox(
-                            height: 7,
+                            height: 21,
                           ),
                           SizedBox(
                             width: 65,
