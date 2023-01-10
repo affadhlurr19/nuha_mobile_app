@@ -61,7 +61,7 @@ class _CarouselHomeState extends State<CarouselHome> {
               child: Container(
                 width: 8.0,
                 height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
+                margin: const EdgeInsets.symmetric(vertical: 4.0, horizontal: 4.0),
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (Theme.of(context).brightness == Brightness.dark

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/data/api/api_service.dart';
 import 'package:nuha_mobile_app/data/db/database_helper.dart';
-import 'package:nuha_mobile_app/data/model/article.dart';
 import 'package:nuha_mobile_app/provider/article_provider.dart';
 import 'package:nuha_mobile_app/provider/database_provider.dart';
 import 'package:nuha_mobile_app/provider/search_article_provider.dart';
@@ -69,9 +68,9 @@ class MyApp extends StatelessWidget {
           RegisterPage.routeName: (context) => const RegisterPage(),
           LoginPage.routeName: (context) => const LoginPage(),
           FavoriteList.routeName:(context) => const FavoriteList(),
-          BottomNav.routeName: (context) => BottomNav(),
+          BottomNav.routeName: (context) => const BottomNav(),
           ArticleDetailPage.routeName: (context) => ArticleDetailPage(idArticle: ModalRoute.of(context)?.settings.arguments as int),
-          SearchArticlePage.routeName: (context) => SearchArticlePage()
+          SearchArticlePage.routeName: (context) => const SearchArticlePage()
         },
       ),
     );

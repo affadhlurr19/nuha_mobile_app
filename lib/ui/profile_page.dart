@@ -118,7 +118,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                       width: double.infinity,
                       height: 55,
                       decoration: BoxDecoration(
@@ -135,14 +135,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         onTap: () => Navigator.pushNamed(context, FavoriteList.routeName),
                         child: Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.favorite,
                             color: titleColor,
                             size: 20.0,
                           ),
-                          SizedBox(width: 7),
-                          Container(
-                            width: 100,
+                          const SizedBox(width: 7),
+                          SizedBox(
+                            width: 200,
                             child: Text(
                               'Favorite Artikel',
                               style: Theme.of(context)
@@ -157,17 +157,17 @@ class _ProfilePageState extends State<ProfilePage> {
                       ),
                       ),
                     ),
-                    SizedBox(height: 5),                   
-                    MenuProfile(name: "Upgrade Akun", ikon: Icons.diamond),
-                    MenuProfile(
+                    const SizedBox(height: 5),                   
+                    const MenuProfile(name: "Upgrade Akun", ikon: Icons.diamond),
+                    const MenuProfile(
                         name: "Kode Referral", ikon: Icons.wallet_giftcard),
-                    MenuProfile(
+                    const MenuProfile(
                         name: "Invoice", ikon: Icons.description_rounded),
-                    MenuProfile(name: "Bantuan", ikon: Icons.help),
-                    MenuProfile(name: "Kontak Kami", ikon: Icons.chat_rounded),
-                    MenuProfile(
+                    const MenuProfile(name: "Bantuan", ikon: Icons.help),
+                    const MenuProfile(name: "Kontak Kami", ikon: Icons.chat_rounded),
+                    const MenuProfile(
                         name: "Syarat & Ketentuan", ikon: Icons.error_rounded),
-                    MenuProfile(
+                    const MenuProfile(
                         name: "Kebijakan Privasi",
                         ikon: Icons.security_rounded),
                   ],

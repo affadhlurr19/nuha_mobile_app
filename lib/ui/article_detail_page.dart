@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
-import 'package:intl/intl.dart';
 import 'package:nuha_mobile_app/data/api/api_service.dart';
 import 'package:nuha_mobile_app/provider/detail_article_provider.dart';
 import 'package:nuha_mobile_app/widget/detail_article_widget.dart';
@@ -12,12 +11,6 @@ class ArticleDetailPage extends StatelessWidget {
   final int idArticle;
 
   const ArticleDetailPage({super.key, required this.idArticle});
-
-  String formatDatetime(String datetime) {
-    var date = DateTime.parse(datetime);
-    var formatter = DateFormat('dd-MM-yyyy HH:mm:ss');
-    return formatter.format(date);
-  }
 
   @override
   Widget build(BuildContext context) {

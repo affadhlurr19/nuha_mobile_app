@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:flutter/gestures.dart';
-import 'package:nuha_mobile_app/ui/home_page.dart';
 import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 
 class LoginPage extends StatefulWidget {

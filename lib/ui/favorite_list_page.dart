@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/data/model/detail_article.dart';
 import 'package:nuha_mobile_app/provider/database_provider.dart';
+import 'package:nuha_mobile_app/ui/article_detail_page.dart';
 import 'package:provider/provider.dart';
 
 class FavoriteList extends StatelessWidget {
@@ -77,7 +78,7 @@ class FavoriteList extends StatelessWidget {
               child: Card(
                 elevation: 5,
                 child: InkWell(
-                  onTap: () => {},
+                  onTap: () => Navigator.pushNamed(context, ArticleDetailPage.routeName, arguments: detailArticle.id),
                   child: SizedBox(
                     height: 120,
                     child: Row(children: <Widget>[

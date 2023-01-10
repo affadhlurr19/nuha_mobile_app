@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/data/model/detail_article.dart';
 import 'package:nuha_mobile_app/provider/database_provider.dart';
@@ -9,6 +10,12 @@ class DetailArticleWidget extends StatelessWidget {
   final Article detailArticle;
 
   const DetailArticleWidget({super.key, required this.detailArticle});
+
+   String formatDatetime(String datetime) {
+    var date = DateTime.parse(datetime);
+    var formatter = DateFormat('dd-MM-yyyy HH:mm:ss');
+    return formatter.format(date);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,13 +59,13 @@ class DetailArticleWidget extends StatelessWidget {
                         ),
                         child: isFavorited
                             ? IconButton(
-                                icon: Icon(Icons.favorite),
+                                icon: const Icon(Icons.favorite),
                                 iconSize: 25,
                                 color: iconColor,
                                 onPressed: () => provider.removeFavArticles(detailArticle.id!),
                               )
                             : IconButton(
-                                icon: Icon(Icons.favorite_border),
+                                icon: const Icon(Icons.favorite_border),
                                 iconSize: 25,
                                 color: iconColor,
                                 onPressed: () => provider.addFavArticles(detailArticle),
@@ -114,7 +121,7 @@ class DetailArticleWidget extends StatelessWidget {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 2),
-                                child: Text(detailArticle.createdAt.toString(),
+                                child: Text(formatDatetime(detailArticle.createdAt!.toString()),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall!
@@ -193,7 +200,7 @@ class DetailArticleWidget extends StatelessWidget {
                               top: 7, left: 10, right: 10, bottom: 20),
                           child: Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 backgroundImage: NetworkImage(
                                     'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
                                 radius: 30,

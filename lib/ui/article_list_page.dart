@@ -10,43 +10,6 @@ class ArticleListPage extends StatelessWidget {
   static const String articleTitle = 'Articles';
   const ArticleListPage({super.key});
 
-  Widget _buildList() {
-    return Consumer<ArticleProvider>(builder: (context, state, _) {
-      if (state.state == ResultState.loading) {
-        return const Center(
-          child: CircularProgressIndicator(color: titleColor),
-        );
-      } else if (state.state == ResultState.hasData) {
-        return ListView.builder(
-          shrinkWrap: true,
-          itemCount: state.result.article!.length,
-          itemBuilder: (context, index) {
-            var article = state.result.article![index];
-            return CardArticle(article: article);
-          },
-        );
-      } else if (state.state == ResultState.noData) {
-        return Center(
-          child: Material(
-            child: Text(state.message),
-          ),
-        );
-      } else if (state.state == ResultState.error) {
-        return Center(
-          child: Material(
-            child: Text(state.message),
-          ),
-        );
-      } else {
-        return const Center(
-          child: Material(
-            child: Text(''),
-          ),
-        );
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,11 +49,49 @@ class ArticleListPage extends StatelessWidget {
           elevation: 0),
       backgroundColor: backColor,
       body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
+        physics: const ScrollPhysics(),
         child: Column(
           children: [const SizedBox(height: 15), _buildList()],
         ),
       ),
     );
+  }
+
+  Widget _buildList() {
+    return Consumer<ArticleProvider>(builder: (context, state, _) {
+      if (state.state == ResultState.loading) {
+        return const Center(
+          child: CircularProgressIndicator(color: titleColor),
+        );
+      } else if (state.state == ResultState.hasData) {
+        return ListView.builder(
+          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: state.result.article!.length,
+          itemBuilder: (context, index) {
+            var article = state.result.article![index];
+            return CardArticle(article: article);
+          },
+        );
+      } else if (state.state == ResultState.noData) {
+        return Center(
+          child: Material(
+            child: Text(state.message),
+          ),
+        );
+      } else if (state.state == ResultState.error) {
+        return Center(
+          child: Material(
+            child: Text(state.message),
+          ),
+        );
+      } else {
+        return const Center(
+          child: Material(
+            child: Text(''),
+          ),
+        );
+      }
+    });
   }
 }

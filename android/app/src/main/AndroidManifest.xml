@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
    <application
         android:label="nuha_mobile_app"
-        android:name="${applicationName}"
+        android:name="Nuha"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

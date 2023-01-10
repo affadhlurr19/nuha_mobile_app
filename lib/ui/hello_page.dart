@@ -24,7 +24,7 @@ class HelloPage extends StatelessWidget {
             children: [
               Center(
                 child: Container(
-                  margin: const EdgeInsets.only(top: 92, bottom: 22),
+                  margin: const EdgeInsets.only(top: 32, bottom: 22),
                   height: 330,
                   width: 330,
                   decoration: const BoxDecoration(
@@ -41,7 +41,7 @@ class HelloPage extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.fromLTRB(71, 10, 71, 0),
                       child: Text(
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+                        "Nuha akan menjadi teman setia dalam mengelola keuanganmu. Mulailah meningkatkan literasi keuanganmu sekarang dan capailah kebebasan finansial.",
                         style: Theme.of(context).textTheme.bodyText2,
                         textAlign: TextAlign.center,
                       ),
@@ -54,6 +54,10 @@ class HelloPage extends StatelessWidget {
                           onPressed: () {
                             Navigator.pushNamed(context, '/login');
                           },
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              backgroundColor: secondaryColor),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -74,18 +78,18 @@ class HelloPage extends StatelessWidget {
                               )
                             ],
                           ),
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              backgroundColor: secondaryColor),
                         )),
-                    Container(
+                    SizedBox(
                         width: 200,
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.pushNamed(context, '/register');
                           },
+                          style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30)),
+                              backgroundColor: iconColor),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -106,10 +110,6 @@ class HelloPage extends StatelessWidget {
                               )
                             ],
                           ),
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30)),
-                              backgroundColor: iconColor),
                         ))
                   ],
                 ),

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nuha_mobile_app/common/styles.dart';
 import 'package:nuha_mobile_app/ui/hello_page.dart';
-import 'package:nuha_mobile_app/widget/bottom_nav.dart';
 
 class SplashPage extends StatefulWidget {
   static const String routeName = '/';
@@ -17,6 +16,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
+    super.initState();
     Timer(const Duration(seconds: 3), () {
       Navigator.pushNamedAndRemoveUntil(context, HelloPage.routeName, (route) => false);
     });
